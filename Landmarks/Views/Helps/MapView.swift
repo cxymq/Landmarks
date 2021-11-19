@@ -10,7 +10,7 @@
 import SwiftUI
 import MapKit
 
-// 修饰符 @State https://jaredsinclair.com/2020/05/07/swiftui-cheat-sheet.html#:~:text=Use%20%40State%20when%20your%20view,ancestor%20has%20a%20reference%20to.
+// 修饰符 @State，视图随着属性变化 https://jaredsinclair.com/2020/05/07/swiftui-cheat-sheet.html#:~:text=Use%20%40State%20when%20your%20view,ancestor%20has%20a%20reference%20to.
 
 struct MapView: View {
     var coordinate: CLLocationCoordinate2D

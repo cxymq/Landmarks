@@ -6,9 +6,18 @@
 //
 
 // 加载本地 JSON 数据
-import Foundation
 
-var landmarks: [LandMark] = load("landmarkData.json")
+import Foundation
+/// Combine：函数响应框架，为处理随着时间变化的值的一种声明式框架。Combine 作用是将异步事件通过组合事件处理操作符进行自定义处理。关注如何处理变化的值，正是响应式编程的核心。
+///Combine可以概述为一种声明式的函数响应式编程。https://blog.csdn.net/ctrip_tech/article/details/109375619
+import Combine
+
+// An observable object needs to publish any changes to its data, so that its subscribers can pick up the change.
+final class ModelData: ObservableObject {
+    // 发布者，将数据变化发送给订阅者
+    @Published var landmarks: [LandMark] = load("landmarkData.json")
+}
+
 
 // 范型<T: Decodable>，不返回指定类型，使用更宽泛，也可返回其他模型
 // https://docs.swift.org/swift-book/LanguageGuide/OpaqueTypes.html，讲述了 swift 引入的 opaque type

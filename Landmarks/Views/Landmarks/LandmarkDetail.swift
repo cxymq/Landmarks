@@ -8,7 +8,13 @@
 import SwiftUI
 
 struct LandmarkDetail: View {
+    @EnvironmentObject var modelData: ModelData
     var landmark: LandMark
+    
+    var landmarkIndex: Int {
+        // firstIndex 返回第一个满足条件元素的索引
+        modelData.landmarks.firstIndex(where: {$0.id == landmark.id})!
+    }
     
     var body: some View {
         ScrollView {
@@ -21,8 +27,13 @@ struct LandmarkDetail: View {
                 .padding(.bottom, -130)
             
             VStack(alignment: .leading) {
-                Text(landmark.name)
-                    .font(.title)
+                HStack {
+                    Text(landmark.name)
+                        .font(.title)
+                    // 为什么不直接用 landmark.isFavorite ?
+                    // 因为要和 FavoriteButton 的状态绑定，此处是直接从数据源中拿的新 landmark
+                    FavoriteButton(isSet: $modelData.landmarks[landmarkIndex].isFavorite)
+                }
                 HStack {
                     Text(landmark.park)
                     Spacer()
@@ -44,6 +55,7 @@ struct LandmarkDetail: View {
 }
 
 struct LandmarkDetail_Previews: PreviewProvider {
+    static var landmarks = ModelData().landmarks
     static var previews: some View {
         LandmarkDetail(landmark: landmarks[1])
     }

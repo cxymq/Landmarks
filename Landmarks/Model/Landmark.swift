@@ -10,12 +10,14 @@ import SwiftUI
 import CoreLocation
 
 // Hashable（用于 hash 属性值进行比较是否相等） Codable（用于匹配变量和 JSON 值） 作用 https://dudd.tistory.com/63
-struct LandMark: Hashable, Codable {
+struct LandMark: Hashable, Codable, Identifiable {
+    // 属性名称要和 json 一致，否则导致解析失败
     var id: Int
     var name: String
     var park: String
     var state: String
     var description: String
+    var isFavorite: Bool
     
     private var imageName: String
     var image: Image{
