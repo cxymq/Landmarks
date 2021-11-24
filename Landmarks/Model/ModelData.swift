@@ -16,6 +16,8 @@ import Combine
 final class ModelData: ObservableObject {
     // 发布者，将数据变化发送给订阅者
     @Published var landmarks: [LandMark] = load("landmarkData.json")
+    
+    var hikes: [Hike] = load("hikeData.json")
 }
 
 
