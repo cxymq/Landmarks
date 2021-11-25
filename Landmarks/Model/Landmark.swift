@@ -18,6 +18,16 @@ struct LandMark: Hashable, Codable, Identifiable {
     var state: String
     var description: String
     var isFavorite: Bool
+    var isFeatured: Bool
+    
+    // 类别
+    var category: Category
+    // CaseIterable 通常用于无关联的枚举值，可以用 allCases 获取所有的值
+    enum Category: String, CaseIterable, Codable {
+        case lakes = "Lakes"
+        case rivers = "Rivers"
+        case mountains = "Mountains"
+    }
     
     private var imageName: String
     var image: Image{

@@ -18,6 +18,25 @@ final class ModelData: ObservableObject {
     @Published var landmarks: [LandMark] = load("landmarkData.json")
     
     var hikes: [Hike] = load("hikeData.json")
+    
+    // 通过 category 进行分组
+    var categories: [String: [LandMark]] {
+        Dictionary (
+            grouping: landmarks) { landmark in
+                landmark.category.rawValue
+            }
+        // 官网示例（尾随闭包简写）
+//        Dictionary (grouping: landmarks) { $0.category.rawValue }
+    }
+    
+    var features: [LandMark] {
+        landmarks.filter { landmark in
+            landmark.isFeatured
+        }
+        
+        // 官网示例（尾随闭包简写
+//        landmarks.filter { $0.isFeatured }
+    }
 }
 
 
