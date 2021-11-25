@@ -19,6 +19,8 @@ final class ModelData: ObservableObject {
     
     var hikes: [Hike] = load("hikeData.json")
     
+    @Published var profile = Profile.default
+    
     // 通过 category 进行分组
     var categories: [String: [LandMark]] {
         Dictionary (
