@@ -15,12 +15,15 @@ struct CategoryHome: View {
         NavigationView {
             List {
                 // 展示轮播图
-                modelData.features[0].image
-                    .resizable()
-                    .scaledToFill()
-                    .frame(height: 200)
-                    .clipped()
-                    // 将边距设置为 0（每行显示更加紧凑
+//                modelData.features[0].image
+//                    .resizable()
+//                    .scaledToFill()
+//                    .frame(height: 200)
+//                    .clipped()
+//                    // 将边距设置为 0（每行显示更加紧凑
+//                    .listRowInsets(EdgeInsets())
+                PageView(pages: modelData.features.map { FeatureCard(landmark: $0) })
+                    .aspectRatio(3 / 2, contentMode: .fit)
                     .listRowInsets(EdgeInsets())
                 
                 // 展示分类
